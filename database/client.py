@@ -15,12 +15,15 @@ class SupabaseClient:
     def __init__(self, url: str, key: str):
         self.url = url
         self.key = key
-        self.client = create_client(url, key) if create_client else None
+        self.client = create_client(url, key) if (url and key and create_client) else None
 
     def insert(self, table: str, data: Dict[str, Any]) -> Dict[str, Any]:
         if self.client:
-            res = self.client.table(table).insert(data).execute()
-            return {"status": "ok", "data": res.data}
+            try:
+                res = self.client.table(table).insert(data).execute()
+                return {"status": "ok", "data": res.data}
+            except Exception as e:  # tolerant if table missing
+                return {"status": "error", "error": str(e)}
         return {"status": "noop", "table": table, "data": data}
 
     def fetch_waiting_prompts(self) -> List[Dict[str, Any]]:
