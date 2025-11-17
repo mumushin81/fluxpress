@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "auto-github-blogger",
+  "builds": [
+    { "src": "articles/final/**", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/", "dest": "/articles/final/index.html" }
+  ]
+}
