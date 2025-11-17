@@ -3,7 +3,8 @@ import http.server
 import socketserver
 from pathlib import Path
 
-PORT = 8000
+import os
+PORT = int(os.getenv("PORT", 8000))
 ROOT = Path(__file__).resolve().parent.parent / "articles" / "final"
 
 class Handler(http.server.SimpleHTTPRequestHandler):
