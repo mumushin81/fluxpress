@@ -2,6 +2,7 @@
 .env
 __pycache__
 .cache
+.DS_Store
 articles/final/*.html
 articles/final/*.md
 *.log
