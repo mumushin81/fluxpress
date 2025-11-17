@@ -57,7 +57,7 @@ def _build_sections(analysis: Dict[str, Any]) -> List[Dict[str, str]]:
 
 
 def generate_blog(analysis: Dict[str, Any]) -> Dict[str, Any]:
-    """Return structured blog draft using template + analysis.
+    """Return structured blog draft strictly following BLOG_WRITING_GUIDE sections.
     Replace body generation with Codex prompt in production.
     """
     repo = analysis.get("repo_name", "project")
